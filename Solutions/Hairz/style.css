@@ -1,0 +1,37 @@
+/* General styling */
+/* Element selector */
+body {
+    background-color: #eee;
+}
+
+/* Utility class, use whenever content needs the same max width and centering */
+/* Class selector */
+.container {
+    max-width: 800px;
+    margin: auto;
+    /* Small padding so content can breath when container is squized */
+    padding: 0 .5rem;
+}
+
+/* All styling for header */
+header {
+    background-color: #4b9097;
+}
+
+/* Flex properties only for the .container in the header */
+/* Child combinator, to select only .container class who are children of a header element */
+header > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Select all h1 with the class .logo */
+h1.logo {
+    font-size: 2rem;
+    text-transform: uppercase;
+    padding: 2rem;
+    color: white;
+    background: rgb(27,33,53);
+    background: linear-gradient(180deg, rgba(27,33,53,1) 0%, rgba(18,23,44,1) 100%); 
+}
