@@ -1,12 +1,30 @@
+@font-face {
+    font-family: 'Arimo';
+    src: url('./fonts/Arimo-Bold/Arimo-Bold.eot'); /* IE9 Compatibility */
+    src: url('./fonts/Arimo-Bold/Arimo-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 Compatibility */
+         url('./fonts/Arimo-Bold/Arimo-Bold.woff') format('woff'), /* Modern Browsers */
+         url('./fonts/Arimo-Bold/Arimo-Bold.ttf') format('truetype'), /* Legacy Browsers */
+         url('./fonts/Arimo-Bold/Arimo-Bold.svg#Arimo') format('svg'); /* iOS Compatibility */
+    font-weight: bold; /* Font weight (if applicable) */
+    font-style: normal; /* Font style (if applicable) */
+}
+
+
 /* General styling */
 /* Element selector */
 body {
     background-color: #eee;
 }
 
+.container {
+    max-width: 1024px;
+    margin: auto;
+    padding: 5px;
+}
+
 /* Utility class, use whenever content needs the same max width and centering */
 /* Class selector */
-.container {
+.logo-container {
     max-width: 800px;
     margin: auto;
     /* Small padding so content can breath when container is squized */
@@ -16,14 +34,18 @@ body {
 /* All styling for header */
 header {
     background-color: #4b9097;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Flex properties only for the .container in the header */
 /* Child combinator, to select only .container class who are children of a header element */
-header > .container {
+header > .logo-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Set the .container to use relative positioning */
+    z-index: 1; /* Bring the .container to the top layer */
 }
 
 /* Select all h1 with the class .logo */
@@ -32,6 +54,103 @@ h1.logo {
     text-transform: uppercase;
     padding: 2rem;
     color: white;
+    position: relative; /* Set the h1.logo to use relative positioning */
+    z-index: 2; /* Bring the h1.logo to the top layer */
     background: rgb(27,33,53);
     background: linear-gradient(180deg, rgba(27,33,53,1) 0%, rgba(18,23,44,1) 100%); 
 }
+
+
+/* General reset for the list */
+ul.navbar {
+    list-style: none;
+    margin-top: 65px;
+    display: flex;
+    justify-content: center; /* Centers the navigation items */
+    background-color: #4b9097; /* Background color of the navbar */
+    padding-left: 105px;
+}
+
+
+
+/* Styling for each list item */
+ul.navbar li {
+    margin: 0 10px; /* Adds spacing between buttons */
+}
+
+/* Link styling */
+.nav-link {
+    text-decoration: none; /* Removes underline */
+    font-family: 'Arino', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    color: #FFFFFF; /* Text color */
+    background-color: #1C1D3A; /* Background of the button */
+    padding: 5px 15px; /* Adds padding around text */
+    border-radius: 5px; /* Rounds the corners */
+    transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+/* Hover effect for buttons */
+.nav-link:hover {
+    background-color: #3DA5A5; /* Changes button color on hover */
+    color: #FFFFFF; /* Keeps text white */
+}
+
+
+.hairstyle-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid #4b9097; /* Light teal border */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+    max-width: 800px;
+    margin: 40px auto; /* Center it horizontally */
+}
+
+.hairstyle-image {
+    max-width: 280px; /* Control the size of the image */
+}
+
+.hairstyle-text {
+    font-family: 'Arimo', sans-serif; /* Replace with your font */
+    font-weight: bold;
+    font-size: 24px;
+    color: #333333; /* Dark text */
+    margin-left: 20px; /* Space between image and text */
+}
+
+.hairstyle-banner h2 {
+    margin: 0; /* Remove default margins */
+    line-height: 1.4; /* Improve readability */
+}
+
+.hair-container {
+    max-width: 800px; /* Adjust this percentage to reduce width */
+    margin: 0 auto; /* Centers the container */
+    display: flex;
+    justify-content: space-between; 
+
+  }
+  
+  .item {
+    text-align: left;
+  }
+  
+  .item img {
+    width: auto;
+    height: auto;
+    max-width: 190px;
+    border: 2px solid #4b9097;
+  }
+  
+  .item h3 {
+    margin-top: 10px;
+    font-size: 18px;
+  }
+  
+  .item p {
+    font-size: 14px;
+    color: #666;
+  }
