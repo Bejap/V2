@@ -1,65 +1,96 @@
-let player = {
-    name: "Per",
-    chips: 145
-}
+class BlackjackGame {
+    // Private fields
+    #cards = [];
+    #sum = 0;
+    #hasBlackJack = false;
+    #isAlive = false;
+    #message = "";
+    #messageEl;
+    #sumEl;
+    #cardsEl;  
+    #playerEl; 
 
-let cards = []
-let sum = 0
-let hasBlackJack = false
-let isAlive = false
-let message = ""
-let messageEl = document.getElementById("message-el")
-let sumEl = document.getElementById("sum-el")
-let cardsEl = document.getElementById("cards-el")
-let playerEl = document.getElementById("player-el")
+    constructor(playerName, playerChips) {
+        this.player = { name: playerName, chips: playerChips };
+        
+        // DOM elements
+        this.#messageEl = document.getElementById("message-el");
+        this.#sumEl = document.getElementById("sum-el");
+        this.#cardsEl = document.getElementById("cards-el");
+        this.#playerEl = document.getElementById("player-el");
 
-playerEl.textContent = player.name + ": $" + player.chips
+        this.#updatePlayerInfo();
+    }
 
-function getRandomCard() {
-    let randomNumber = Math.floor( Math.random()*13 ) + 1
-    if (randomNumber > 10) {
-        return 10
-    } else if (randomNumber === 1) {
-        return 11
-    } else {
-        return randomNumber
+    // Public methods
+    startGame() {
+        this.#isAlive = true;
+        const firstCard = this.#getRandomCard();
+        const secondCard = this.#getRandomCard();
+        this.#cards = [firstCard, secondCard];
+        this.#sum = firstCard + secondCard;
+        this.#renderGame();
+    }
+
+    newCard() {
+        if (this.#isAlive && !this.#hasBlackJack) {
+            const card = this.#getRandomCard();
+            this.#cards.push(card);
+            this.#sum += card;
+            this.#renderGame();
+        }
+    }
+
+    // Private methods
+    #updatePlayerInfo() {
+        this.#playerEl.textContent = `${this.player.name}: $${this.player.chips}`;
+    }
+
+    #getRandomCard() {
+        const randomNumber = Math.floor(Math.random() * 13) + 1;
+        return randomNumber > 10 ? 10 : randomNumber === 1 ? 11 : randomNumber;
+    }
+
+    #renderGame() {
+        this.#cardsEl.textContent = `Cards: ${this.#cards.join(" ")}`;
+        this.#sumEl.textContent = `Sum: ${this.#sum}`;
+        
+        if (this.#sum <= 20) {
+            this.#message = "Do you want to draw a new card?";
+        } else if (this.#sum === 21) {
+            this.#message = "You've got Blackjack!";
+            this.#hasBlackJack = true;
+        } else {
+            this.#message = "You're out of the game!";
+            this.#isAlive = false;
+        }
+
+        this.#messageEl.textContent = this.#message;
+    }
+
+    // Optional: Expose a hidden reset method for debugging
+    #resetGame() {
+        this.#cards = [];
+        this.#sum = 0;
+        this.#hasBlackJack = false;
+        this.#isAlive = false;
+        this.#message = "";
+        this.#renderGame();
+    }
+
+    // Public method for debugging (can be disabled in production)
+    debugReset() {
+        this.#resetGame();
+        console.log("Game reset!");
     }
 }
 
-function startGame() {
-    isAlive = true
-    let firstCard = getRandomCard()
-    let secondCard = getRandomCard()
-    cards = [firstCard, secondCard]
-    sum = firstCard + secondCard
-    renderGame() 
-}
+// Instantiate the game and bind it to the UI
+const blackjackGame = new BlackjackGame("Per", 145);
 
-function renderGame() {
-    cardsEl.textContent = "Cards: "
-    for (let i = 0; i < cards.length; i++) {
-        cardsEl.textContent += cards[i] + " "
-    }
-    
-    sumEl.textContent = "Sum: " + sum
-    if (sum <= 20) {
-        message = "Do you want to draw a new card?"
-    } else if (sum === 21) {
-        message = "You've got Blackjack!"
-        hasBlackJack = true
-    } else {
-        message = "You're out of the game!"
-        isAlive = false
-    }
-    messageEl.textContent = message
-}
+// Hook up startGame and newCard to buttons in the HTML
+document.getElementById("start-btn").addEventListener("click", () => blackjackGame.startGame());
+document.getElementById("new-card-btn").addEventListener("click", () => blackjackGame.newCard());
 
-
-function newCard() {
-    if (isAlive === true && hasBlackJack === false) {
-        let card = getRandomCard()
-        sum += card
-        cards.push(card)
-        renderGame()        
-    }
-}
+// Debugging access
+document.getElementById("reset-btn")?.addEventListener("click", () => blackjackGame.debugReset());
