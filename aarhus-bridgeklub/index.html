@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>aarhus-bridgeklub</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <img src="img/logo.jpg" alt="" class="logo">
-        <nav class="hovedmenu">
+        <button id="menu-toggle" class="hamburger-icon">
+            <img src="img/ic_menu_black_24px.svg" alt="">
+        </button>
+        <nav class="menu">
             <button class="header-button home-button">Hjem</button>
             <button class="header-button">Events</button>
             <button class="header-button">Historie</button>
@@ -30,7 +34,10 @@
         </section>
         <div class="to-row">
             <article class="welcome">
-                <h1 class="welcome-title">Velkommen til Aarhus Bridgeklub</h1>
+                <h1 class="welcome-title">
+                    <img src="img/card-suits-spades.png" alt="" class="spade">
+                    Velkommen til Aarhus Bridgeklub
+                </h1>
                 <img src="img/bridge-tournament.jpg" alt="">
                 <div class="welcome-content">
                     <p>Velkommen til Aarhus Bridgeklub, som blev oprette helt tilbage i 1934 og derfor er den ældste bridgeklub i Jylland.</p>
@@ -68,19 +75,61 @@
                         </li>
                     </ul>
                 </div>
-                <div class="event-container">
+                <article class="event-container news">
                     <h1 class="event-title">Nyhedsbrev</h1>
                     <p>Tilmeld dig vores nyhedsbrev og modtag alle nyheder om klubben direkte i din indbakke.</p>
-                </div>
+                    <form action="#" class="submit-newsletter" method="post">
+                        <input type="text" id="name" name="name" placeholder="Dit navn" required>
+                        <input type="email" id="email" name="email" placeholder="Din email" required>
+                        <button type="submit">Tilmeld</button>
+                    </form>
+                </article>
             </aside>
-            <article class="newsletter">
-            </article>
         </div>
         <section class="club-info">
+            <article>
+                <h2>
+                    <img src="img/card-suits-spades.png" alt="" class="spade">
+                    Klubaftener
+                </h2>
+                <img src="img/bridge-01.jpg" alt="Folk spiller kort ved et bord" class="people-playing">
+                <p>To gange om ugen afholdes der klubaftener, hvor du kan komme og spille eller nyde det sociale samvær.</p>
+                <a href="klubaftener.html" class="read-more">Læs mere</a>
+              </article>
+              <article>
+                <h2>
+                    <img src="img/card-suits-spades.png" alt="" class="spade">
+                    Medlemskab
+                </h2>
+                <img src="img/bridge-02.jpg" alt="Folk spiller kort i en klub" class="people-playing">
+                <p>Kontingent for medlemskab kan betales månedligt eller årligt. Klik og se en oversigt over de aktuelle priser.</p>
+                <a href="medlemskab.html" class="read-more">Læs mere</a>
+              </article>
         </section>
     </main>
     <footer>
-
+        <div class="footer-content">
+            <section class="contact">
+                <h2>Kontakt os</h2>
+                <address>
+                    <p>Aarhus Bridgeklub</p>
+                    <p>Vanggaardcentret</p>
+                    <p>Paludan Müllersvej 26</p>
+                    <p>8200 Århus N</p>
+                    <a href="https://www.aarhusbridgeklub.dk">www.aarhusbridgeklub.dk</a>
+                    <a href="mailto:aabk@aarhusbridgeklub.dk">aabk@aarhusbridgeklub.dk</a>
+                </address>
+            </section>
+            <section class="history">
+                <h2>Historie</h2>
+                <p>AaBK stiftedes i september 1934. Stifterne var "en kreds af bridgeinteresserede medlemmer af Selskabet Polyhymnia og Handels- og Kontoristforeningen". AaBK var således den første forening i Aarhus, der havde bridgespil som hovedformål.</p>    
+            </section>
+            <section class="membership">
+                <h2>Bliv medlem</h2>
+                <p>Aarhus Bridgeklub er for alle, som kan lide at spille og samtidig nyde masser af socialt samvær. Alder, køn og race er derfor ingen hindring. Du skal være så hjertelig velkommen.</p>    
+            </section>
+        </div>
     </footer>
+    <script src="js/script.js"></script>
 </body>
 </html>
